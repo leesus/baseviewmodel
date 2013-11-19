@@ -1,0 +1,30 @@
+{
+  "name": "BaseViewModel",
+  "version": "0.0.1",
+  "homepage": "https://github.com/leesus/BaseViewModel",
+  "authors": [
+    "leesus <lee@lee-ellam.com>"
+  ],
+  "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
+  "main": "dist/baseviewmodel.js",
+  "dependencies": {
+    "requirejs": "*",
+    "underscore": "*",
+    "knockout": "*"
+  },
+  "keywords": [
+    "knockout.js",
+    "baseviewmodel",
+    "inheritance",
+    "backbone"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

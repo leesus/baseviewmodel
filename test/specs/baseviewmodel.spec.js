@@ -1,46 +1,84 @@
-define(['underscore', 'viewmodels/baseviewmodel'], function(_, BaseViewModel){
-  var TestModel = BaseViewModel.extend({
-    this.id = 0;
-    this.name = '';
-    this.age = null;
-    this.colors = [];
-    this.getColors = function(){
-      return this.colors().join(', ');
-    }
-  });
+define(['underscore', 'baseviewmodel'], function(_, BaseViewModel){
 
+  var TestViewModel;
 
   describe('BaseViewModel', function() {
-    it('should add ko.observable to each property', function() {
-      var model = new TestModel();
 
-      expect(typeof model.id).toEqual('function');
-      expect(model.id()).toBe(0);
-      expect(typeof model.name).toEqual('function');
-      expect(_.isArray(model.colors())).toBe(true);
-      expect(model.colors().length).toEqual(0);
+
+    it('should convert the properties of the first argument to observables on viewModel', function() {
+      var model = {id: 2, list: [1, 2, 3], listToString: function() { return this.list().join(', '); }};
+      var viewModel = new BaseViewModel(model);
+
+      expect(typeof viewModel.id).toEqual('function');
+      expect(viewModel.id()).toBe(2);
+      expect(typeof viewModel.list.push).toEqual('function');
+      expect(viewModel.list()).toEqual([1, 2, 3]);
+      expect(viewModel.listToString()).toEqual('1, 2, 3');
     });
 
-    it('should add ko.observable to each property passed in', function() {
-      var model = new TestModel({
-        id: 1,
-        name: 'joe',
-        age: 24,
-        colors: ['blue', 'green', 'red']
+    it('convert the properties of the defaults object to observables', function() {
+      TestViewModel = BaseViewModel.extend({
+        defaults: {
+          foo: 'foo',
+          bar: [1, 2, 3],
+          barToString: function() {
+            return this.bar().join(', ');
+          }
+        }
       });
+      var viewModel = new TestViewModel();
 
-      expect(typeof model.id).toEqual('function');
-      expect(model.id()).toEqual(1);
-      expect(typeof model.name).toEqual('function');
-      expect(model.age()).toEqual(24);
-      expect(_.isArray(model.colors())).toBe(true);
-      expect(model.colors().length).toEqual(3);
+      expect(viewModel.foo()).toEqual('foo');
+      expect(viewModel.bar()).toEqual([1, 2, 3]);
+      expect(viewModel.barToString()).toEqual('1, 2, 3');
     });
 
-    it('should call the initialize method', function() {
-      var model = new TestModel();
+    it('should overwrite the defaults with properties of the first argument', function() {
+      var model = new TestViewModel({ foo: 'bar' });
 
-      expect(model.name()).toEqual('foo');
+      expect(model.foo()).toEqual('bar');
     });
+
+    it('should copy the properties of the second argument as is', function(){
+      var model = new TestViewModel({ foo: 'bar' }, { myFunc: function(){ return 'hello' }});
+
+      expect(typeof model.myFunc).toEqual('function');
+      expect(model.myFunc()).toEqual('hello');
+    });
+
+    it('should call init method if defined', function(){
+      TestViewModel = BaseViewModel.extend({
+        defaults: {
+          foo: 'foo',
+          bar: [1, 2, 3],
+          barToString: function() {
+            return this.bar().join(', ');
+          }
+        },
+        init: function(){
+          return 'hello ' + this.foo() + '!';
+        }
+      });
+      var model = new TestViewModel();
+
+      expect(typeof model.init).toEqual('function');
+      expect(model.init()).toEqual('hello foo!');
+    });
+
+    it('should have a toModel method that returns the model as passed', function(){
+      var model = new TestViewModel({ id: 1, name: 'foo' });
+      var returnedModel = {
+        id: 1,
+        name: 'foo',
+        foo: 'foo',
+        bar: [1, 2, 3],
+        barToString: function() {
+          return this.bar().join(', ');
+        }
+      };
+      console.log(returnedModel);
+      expect(typeof model.toModel).toEqual('function');
+      expect(_.isEqual(model.toModel(), returnedModel)).toBe(true);
+    })
   });
 });

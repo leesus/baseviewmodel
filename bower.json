@@ -10,7 +10,8 @@
   "dependencies": {
     "requirejs": "*",
     "underscore": "*",
-    "knockout": "*"
+    "knockout": "*",
+    "jquery": "*"
   },
   "keywords": [
     "knockout.js",

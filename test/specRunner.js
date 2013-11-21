@@ -2,6 +2,7 @@ require.config({
     urlArgs: '_=' + (new Date()).getTime(),
     baseUrl: '../src/',
     paths: {
+        jquery: '../lib/jquery/jquery.min',
         ko: '../lib/knockout/build/output/knockout-latest',
         underscore: '../lib/underscore/underscore-min',
         'jasmine': '../test/jasmine-1.3.0/jasmine',

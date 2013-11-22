@@ -49,9 +49,34 @@ me.age(); // 28
 me.address.city(); // 'London'
 me.greeting(); // 'Hello, I'm Lee from London'
 ```
+
+### Getting back the model
+
+To return the original model there is a toModel method to return the original model as an object, or a toJSON method that returns a JSON representation of the original model. Both methods ignore default properties.
+
+```javascript
+var model = {
+  foo: 'foo',
+  bar: 'bar'
+};
+var VM = new BaseViewModel.extend({
+  defaults: {
+    foobar: 'foobar'
+  }
+});
+var myVM = new VM(model);
+var obj = myVM.toModel();
+var objJSON = myVM.toJSON();
+
+console.log(obj.foobar); // undefined
+console.log(obj.foo); // 'foo'
+console.log(obj); // { foo: 'foo', bar: 'bar' }
+console.log(objJSON); // '{"foo":"foo","bar":"bar"}'
+```
+
 ## TODO:
 
-- Finish off unit tests
+~~- Finish off unit tests~~
 - Add build scripts
 - Create as ko plugin?
 - Publish

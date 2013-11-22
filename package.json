@@ -1,10 +1,16 @@
 {
   "name": "BaseViewModel",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
   "main": "index.js",
   "scripts": {
     "test": "mocha -R test/specs"
+  },
+  "devDependencies": {
+    "requirejs": "latest",
+    "grunt": "*",
+    "grunt-cli":"*",
+    "grunt-contrib-requirejs":"*"
   },
   "repository": {
     "type": "git",
@@ -18,7 +24,6 @@
   ],
   "author": "leesus",
   "license": "MIT",
-  "private": "true",
   "bugs": {
     "url": "https://github.com/leesus/BaseViewModel/issues"
   }

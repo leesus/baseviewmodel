@@ -49,3 +49,9 @@ me.age(); // 28
 me.address.city(); // 'London'
 me.greeting(); // 'Hello, I'm Lee from London'
 ```
+## TODO:
+
+- Finish off unit tests
+- Add build scripts
+- Create as ko plugin?
+- Publish

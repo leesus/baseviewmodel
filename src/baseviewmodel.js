@@ -27,8 +27,10 @@ define(['underscore', 'ko', 'extend'], function(_, ko, extend){
     };
 
 	var BaseViewModel = function BaseViewModel(observables, options){
-		this._model = observables || {};
+		observables = observables || {};
 		options = options || {};
+
+        this._model = _.clone(observables);
         
         setupObservables.call(this, this.defaults);
         setupObservables.call(this, observables);
@@ -45,14 +47,16 @@ define(['underscore', 'ko', 'extend'], function(_, ko, extend){
         init: function() {},
         toModel: function() {
         	var copy = {},
-        		defaults = ko.toJS(this.defaults),
         		model = ko.toJS(this._model);
 
-        	_.extend(copy, defaults, model);
-
-        	console.log(copy)
+        	_.extend(copy, model);
 
         	return copy;
+        },
+        toJSON: function() {
+            var model = this.toModel();
+
+            return JSON.stringify(model);
         }
     });
 

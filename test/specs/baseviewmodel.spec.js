@@ -51,7 +51,7 @@ define(['underscore', 'baseviewmodel'], function(_, BaseViewModel){
         defaults: {
           foo: 'foo',
           bar: [1, 2, 3],
-          barToString: function() {
+          barToString: function barToString() {
             return this.bar().join(', ');
           }
         },
@@ -65,20 +65,31 @@ define(['underscore', 'baseviewmodel'], function(_, BaseViewModel){
       expect(model.init()).toEqual('hello foo!');
     });
 
-    it('should have a toModel method that returns the model as passed', function(){
+    it('should have a toModel method that returns only the model that was passed', function(){
       var model = new TestViewModel({ id: 1, name: 'foo' });
       var returnedModel = {
         id: 1,
-        name: 'foo',
-        foo: 'foo',
-        bar: [1, 2, 3],
-        barToString: function() {
-          return this.bar().join(', ');
-        }
+        name: 'foo'
       };
-      console.log(returnedModel);
+      
       expect(typeof model.toModel).toEqual('function');
       expect(_.isEqual(model.toModel(), returnedModel)).toBe(true);
-    })
+      expect(model.foo()).toEqual('foo');
+      expect(model.toModel().foo).toBe.undefined;
+      expect(model.bar()).toEqual([1, 2, 3]);
+      expect(model.toModel().bar).toBe.undefined;
+    });
+
+    it('should have a toJSON method that returns a JSON representation of the model', function(){
+      var model = new TestViewModel({ id: 1, name: 'foo' });
+      var returnedModel = {
+        id: 1,
+        name: 'foo'
+      };
+      returnedModel = JSON.stringify(returnedModel);
+
+      expect(typeof model.toJSON).toEqual('function');
+      expect(_.isEqual(model.toJSON(), returnedModel)).toBe(true);
+    });
   });
 });

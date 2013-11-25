@@ -8,9 +8,8 @@
   },
   "devDependencies": {
     "requirejs": "latest",
-    "grunt": "*",
-    "grunt-cli":"*",
-    "grunt-contrib-requirejs":"*"
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-concat": "latest"
   },
   "repository": {
     "type": "git",

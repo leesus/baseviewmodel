@@ -1,7 +1,11 @@
+/*!
+ * BaseViewModel v0.1.0
+ * Copyright 2013 leesus
+ * Licensed under 
+ */
 ;(function(name, context, factory){
 
-  // Set up BaseViewModel for the correct environment - UMD
-
+  // Set up BaseViewModel for the correct environment
   // CommonJS first
   if (typeof exports === 'object') {
     module.exports = factory(require);
@@ -24,7 +28,6 @@
   if (typeof _ === 'undefined' || typeof ko === 'undefined') {
     throw new Error('BaseViewModel depends on underscore and knockout');
   }
-
 
   // BaseViewModel
   // -------------
@@ -74,7 +77,6 @@
       return JSON.stringify(model);
     }
   });
-  
 
   // Helpers
   // -------
@@ -83,7 +85,7 @@
   // First, sort the men from the boys (or the computeds from the observables)
   // Next, copy over properties as observables and observableArrays
   // Finally, copy over computeds and bind them correctly to BaseViewModel
-  function setupObservables(options) {
+  var setupObservables = function(options) {
     var computeds = _.functions(options),
       observables = _.omit(options, computeds);
 
@@ -102,7 +104,7 @@
 
   // Helper function to copy over an objects properties to the BaseViewModel
   // Purely copied over, not converted to observables
-  function setupOptions(options) {
+  var setupOptions = function(options) {
     _.each(options, function(value, prop){
       this[prop] = options[prop];
     }, this);

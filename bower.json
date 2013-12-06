@@ -6,12 +6,10 @@
     "leesus <lee@lee-ellam.com>"
   ],
   "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
-  "main": "dist/baseviewmodel.js",
+  "main": "baseviewmodel.js",
   "dependencies": {
-    "requirejs": "~2.1.9",
     "underscore": "~1.5.2",
-    "knockout": "~3.0.0",
-    "extend": "src/extend.js"
+    "knockout": "~3.0.0"
   },
   "devDependencies": {
     "jasmine":"~1.3.0",
@@ -25,9 +23,10 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "docs",
+    "lib",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "src",
+    "test"
   ]
 }

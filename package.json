@@ -2,14 +2,17 @@
   "name": "BaseViewModel",
   "version": "0.1.0",
   "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
-  "main": "index.js",
+  "main": "src/baseviewmodel.js",
   "scripts": {
-    "test": "mocha -R test/specs"
+    "test": "mocha -R spec test/specs"
   },
   "devDependencies": {
-    "requirejs": "latest",
+    "mocha": "latest",
+    "should": "latest",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-concat": "latest"
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-docco2": "~0.1.5"
   },
   "repository": {
     "type": "git",

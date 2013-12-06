@@ -3,6 +3,12 @@ BaseViewModel
 
 BaseViewModel class for Knockout that enables Backbone like extension for viewmodels, based on ideas in [BaseViewModel](https://github.com/bmac/BaseViewModel) and [ko.ninja](https://github.com/jcreamer898/ko.ninja). Uses [Backbone's]() extend function to provide inheritance.
 
+## Getting started
+
+If you wish to contribute to BaseViewModel's development, clone the project and install the dependencies with `npm install`. That's it!
+
+To build the files for deployment, run `grunt build`.
+
 ## Examples
 
 ### Create a BaseViewModel sub-class

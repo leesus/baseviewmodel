@@ -1,9 +1,27 @@
-define(['underscore', 'baseviewmodel'], function(_, BaseViewModel){
-
-  var TestViewModel;
+// Setup specs for UMD testing
+(function(module, factory){
+  // CommonJS
+  if (typeof exports === 'object') {
+    factory(
+      require(module)
+    );
+  // AMD
+  } else if (typeof define === 'function' && define.amd) {
+    define([module], factory);
+  // Browser
+  } else {
+    factory(window[module]);
+  }
+}).call(this, 'BaseViewModel', function(BaseViewModel){
 
   describe('BaseViewModel', function() {
 
+    var TestViewModel;
+
+    it('should exist', function(){
+      console.log('BaseViewModel', BaseViewModel);
+      BaseViewModel.should.be.ok;
+    });
 
     it('should convert the properties of the first argument to observables on viewModel', function() {
       var model = {id: 2, list: [1, 2, 3], listToString: function() { return this.list().join(', '); }};

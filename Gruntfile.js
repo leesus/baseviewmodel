@@ -3,18 +3,40 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    // Package file
+    pkg: grunt.file.readJSON('package.json'),
 
     // Task configuration.
     concat: {
       options: {
-        banner: ';(function(window, undefined){ \n \'use strict\';',
-        footer: '\nif (typeof module === \'object\' && typeof module.exports === \'object\') { \n  var _ = require(\'underscore\'), ko = require(\'knockout\');\n  module.exports = exports = BaseViewModel; \nelse if (typeof define === \'function\' && define.amd) { \n  define([\'underscore\', \'knockout\'], function (_, ko) { window.BaseViewModel = BaseViewModel; }); \n} else if (typeof window === \'object\') { \n  window.BaseViewModel = BaseViewModel; \n})(window);'
+        banner: '/*!\n' +
+              ' * BaseViewModel v<%= pkg.version %>\n' +
+              ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+              ' * Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
+              ' */\n',
       },
       dist: {
-        src: ['src/baseviewmodel.js', 'src/extend.js'],
-        dest: 'build/baseviewmodel.js'
+        src: ['src/baseviewmodel.js'],
+        dest: 'baseviewmodel.js'
       }
     },
+
+    docco: {
+      options: {
+        output: 'docs/annotated-source'
+      },
+      annotate: {
+        src: ['src/baseviewmodel.js']
+      }
+    },
+
+    uglify: {
+      minify: {
+        files: {
+          'baseviewmodel.min.js': ['baseviewmodel.js']
+        }
+      }
+    }
 
 
   });
@@ -22,8 +44,11 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-docco2');
 
-  // CSS compile/build task.
-  grunt.registerTask('build', ['concat']);
-  grunt.registerTask('default', ['concat']);
+  // Tasks
+  grunt.registerTask('build', ['concat', 'uglify', 'docco'])
+  grunt.registerTask('document', ['docco'])
+  grunt.registerTask('default', ['concat', 'docco', 'uglify']);
 };

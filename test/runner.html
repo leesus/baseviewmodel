@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <title>Mocha Spec Runner</title>
+  <link rel="stylesheet" type="text/css" href="../node_modules/mocha/mocha.css">
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/underscore/underscore-min.js"></script>
+  <script src="../lib/knockout/build/output/knockout-latest.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/should/should.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <!-- specs -->
+  <script src="specs/baseviewmodel.spec.js"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery', '_', 'ko']);
+    mocha.run();
+  </script>
+</body>
+</html>

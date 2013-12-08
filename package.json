@@ -4,7 +4,11 @@
   "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
   "main": "src/baseviewmodel.js",
   "scripts": {
-    "test": "mocha -R spec test/specs"
+    "test": "mocha --require should --reporter spec test/specs"
+  },
+  "dependencies": {
+    "underscore": "latest",
+    "knockout": "~3.0.0"
   },
   "devDependencies": {
     "mocha": "latest",

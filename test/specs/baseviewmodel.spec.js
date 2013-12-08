@@ -2,9 +2,7 @@
 (function(module, factory){
   // CommonJS
   if (typeof exports === 'object') {
-    factory(
-      require(module)
-    );
+    factory(require(module));
   // AMD
   } else if (typeof define === 'function' && define.amd) {
     define([module], factory);
@@ -19,7 +17,6 @@
     var TestViewModel;
 
     it('should exist', function(){
-      console.log('BaseViewModel', BaseViewModel);
       BaseViewModel.should.be.ok;
     });
 
@@ -27,11 +24,11 @@
       var model = {id: 2, list: [1, 2, 3], listToString: function() { return this.list().join(', '); }};
       var viewModel = new BaseViewModel(model);
 
-      expect(typeof viewModel.id).toEqual('function');
-      expect(viewModel.id()).toBe(2);
-      expect(typeof viewModel.list.push).toEqual('function');
-      expect(viewModel.list()).toEqual([1, 2, 3]);
-      expect(viewModel.listToString()).toEqual('1, 2, 3');
+      (typeof viewModel.id).should.equal('function');
+      viewModel.id().should.equal(2);
+      (typeof viewModel.list.push).should.equal('function');
+      viewModel.list().should.eql([1, 2, 3]);
+      viewModel.listToString().should.equal('1, 2, 3');
     });
 
     it('convert the properties of the defaults object to observables', function() {
@@ -46,22 +43,22 @@
       });
       var viewModel = new TestViewModel();
 
-      expect(viewModel.foo()).toEqual('foo');
-      expect(viewModel.bar()).toEqual([1, 2, 3]);
-      expect(viewModel.barToString()).toEqual('1, 2, 3');
+      viewModel.foo().should.equal('foo');
+      viewModel.bar().should.eql([1, 2, 3]);
+      viewModel.barToString().should.equal('1, 2, 3');
     });
 
     it('should overwrite the defaults with properties of the first argument', function() {
       var model = new TestViewModel({ foo: 'bar' });
 
-      expect(model.foo()).toEqual('bar');
+      model.foo().should.equal('bar');
     });
 
     it('should copy the properties of the second argument as is', function(){
       var model = new TestViewModel({ foo: 'bar' }, { myFunc: function(){ return 'hello' }});
 
-      expect(typeof model.myFunc).toEqual('function');
-      expect(model.myFunc()).toEqual('hello');
+      (typeof model.myFunc).should.equal('function');
+      model.myFunc().should.equal('hello');
     });
 
     it('should call init method if defined', function(){
@@ -79,8 +76,8 @@
       });
       var model = new TestViewModel();
 
-      expect(typeof model.init).toEqual('function');
-      expect(model.init()).toEqual('hello foo!');
+      (typeof model.init).should.equal('function');
+      model.init().should.equal('hello foo!');
     });
 
     it('should have a toModel method that returns only the model that was passed', function(){
@@ -90,12 +87,12 @@
         name: 'foo'
       };
       
-      expect(typeof model.toModel).toEqual('function');
-      expect(_.isEqual(model.toModel(), returnedModel)).toBe(true);
-      expect(model.foo()).toEqual('foo');
-      expect(model.toModel().foo).toBe.undefined;
-      expect(model.bar()).toEqual([1, 2, 3]);
-      expect(model.toModel().bar).toBe.undefined;
+      (typeof model.toModel).should.equal('function');
+      model.toModel().should.eql(returnedModel);
+      model.foo().should.equal('foo');
+      (model.toModel().foo === undefined).should.be.ok;
+      model.bar().should.eql([1, 2, 3]);
+      (model.toModel().bar === undefined).should.be.ok;
     });
 
     it('should have a toJSON method that returns a JSON representation of the model', function(){
@@ -106,8 +103,8 @@
       };
       returnedModel = JSON.stringify(returnedModel);
 
-      expect(typeof model.toJSON).toEqual('function');
-      expect(_.isEqual(model.toJSON(), returnedModel)).toBe(true);
+      (typeof model.toJSON).should.equal('function');
+      model.toJSON().should.eql(returnedModel);
     });
   });
 });

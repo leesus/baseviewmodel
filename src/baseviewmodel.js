@@ -18,7 +18,7 @@
 
   // Require dependencies or assign to globals
   var _ = (typeof require === 'function') ? require('underscore') : window._;
-  var ko = (typeof require === 'function') ? require('ko') : window.ko;
+  var ko = (typeof require === 'function') ? require('knockout') : window.ko;
 
   // Check dependencies available
   if (typeof _ === 'undefined' || typeof ko === 'undefined') {

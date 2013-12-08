@@ -2,21 +2,21 @@ mocha.setup('bdd');
 
 require.config({
   urlArgs: '_=' + (new Date()).getTime(),
-  baseUrl: '../test/',
+  baseUrl: '../src/',
   paths: {
     underscore: '../lib/underscore/underscore-min',
-    ko: '../lib/knockout/build/output/knockout-latest.debug',
-    src: '../src/',
+    knockout: '../lib/knockout/build/output/knockout-latest.debug'
   },
   shim: {
     underscore: {
       exports: '_'
+    },
+    knockout: {
+      exports: 'ko'
     }
   }
 });
 
-require(['baseviewmodel'], function (BaseViewModel) {
-  require(['specs/baseviewmodel.spec'], function () {
-    mocha.run();
-  });
+require(['../test/specs/baseviewmodel.spec'], function () {
+  mocha.run();
 });

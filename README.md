@@ -9,6 +9,8 @@ If you wish to contribute to BaseViewModel's development, clone the project and 
 
 To build the files for deployment, run `grunt build`.
 
+BaseViewModel is available on npm and bower and is a UMD module.
+
 ## Examples
 
 ### Create a BaseViewModel sub-class
@@ -79,10 +81,3 @@ console.log(obj.foo); // 'foo'
 console.log(obj); // { foo: 'foo', bar: 'bar' }
 console.log(objJSON); // '{"foo":"foo","bar":"bar"}'
 ```
-
-## TODO:
-
-~~- Finish off unit tests~~
-- Add build scripts
-- Create as ko plugin?
-- Publish

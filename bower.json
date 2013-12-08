@@ -22,11 +22,17 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
     "docs",
     "lib",
     "node_modules",
     "src",
-    "test"
+    "test",
+    "**/.*",
+    ".bowerrc",
+    ".gitattributes",
+    ".gitignore",
+    ".npmignore",
+    "Gruntfile.js",
+    "package.json"
   ]
 }

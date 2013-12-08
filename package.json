@@ -1,7 +1,7 @@
 {
-  "name": "BaseViewModel",
+  "name": "baseviewmodel",
   "version": "0.1.0",
-  "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
+  "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels and automatic observing of model properties",
   "main": "src/baseviewmodel.js",
   "scripts": {
     "test": "mocha --require should --reporter spec test/specs"

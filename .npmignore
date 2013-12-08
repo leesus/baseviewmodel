@@ -1,3 +1,14 @@
+.git*
 docs
 lib
 node_modules
+test/*.js
+test/*.html
+.bowerrc
+.DS_Store
+.gitattributes
+.gitignore
+/baseviewmodel.js
+baseviewmodel.min.js
+bower.json
+Gruntfile.js

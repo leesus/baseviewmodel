@@ -12,7 +12,6 @@ module.exports = function(grunt) {
         banner: '/*!\n' +
               ' * BaseViewModel v<%= pkg.version %>\n' +
               ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-              ' * Licensed under <%= _.pluck(pkg.licenses, "url").join(", ") %>\n' +
               ' */\n',
       },
       dist: {

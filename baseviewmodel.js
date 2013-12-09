@@ -1,5 +1,5 @@
 /*!
- * BaseViewModel v0.1.0
+ * BaseViewModel v0.1.1
  * Copyright 2013 leesus
  */
 ;(function(name, context, factory){

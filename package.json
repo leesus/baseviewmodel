@@ -1,6 +1,6 @@
 {
   "name": "baseviewmodel",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels and automatic observing of model properties",
   "main": "src/baseviewmodel.js",
   "scripts": {

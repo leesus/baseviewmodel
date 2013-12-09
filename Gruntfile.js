@@ -21,11 +21,11 @@ module.exports = function(grunt) {
     },
 
     docco: {
-      options: {
-        output: 'docs/annotated-source'
-      },
       annotate: {
-        src: ['src/baseviewmodel.js']
+        options: {
+          output: 'docs/'
+        },
+        src: ['./baseviewmodel.js']
       }
     },
 

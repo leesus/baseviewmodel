@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Baseviewmodel by leesus</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Baseviewmodel</h1>
+          <h2>BaseViewModel class for Knockout that enables Backbone like extension for viewmodels</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/leesus/BaseViewModel/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/leesus/BaseViewModel/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/leesus/BaseViewModel" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="baseviewmodel" class="anchor" href="#baseviewmodel"><span class="octicon octicon-link"></span></a>BaseViewModel</h1>
+
+<p>BaseViewModel class for Knockout that enables Backbone like extension for viewmodels, based on ideas in <a href="https://github.com/bmac/BaseViewModel">BaseViewModel</a> and <a href="https://github.com/jcreamer898/ko.ninja">ko.ninja</a>. Uses <a href="">Backbone's</a> extend function to provide inheritance.</p>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+
+<p>If you wish to contribute to BaseViewModel's development, clone the project and install the dependencies with <code>npm install</code>. That's it!</p>
+
+<p>To build the files for deployment, run <code>grunt build</code>.</p>
+
+<p>BaseViewModel is available on npm and bower and is a UMD module.</p>
+
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<h3>
+<a name="create-a-baseviewmodel-sub-class" class="anchor" href="#create-a-baseviewmodel-sub-class"><span class="octicon octicon-link"></span></a>Create a BaseViewModel sub-class</h3>
+
+<p>You can extend the BaseViewModel class by using the <code>extend</code> method, passing in an object to be copied over to the new sub-class. Additionally, passing in a defaults hash will create default model observables on the sub-class.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">BaseViewModel</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">'Human'</span><span class="p">,</span>
+    <span class="nx">getType</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">'Species: '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// Do something when class instantiated</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">type</span><span class="p">();</span> <span class="c1">// 'Human'</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">getType</span><span class="p">();</span> <span class="c1">// 'Species: Human'</span>
+</pre></div>
+
+<h3>
+<a name="passing-a-model" class="anchor" href="#passing-a-model"><span class="octicon octicon-link"></span></a>Passing a model</h3>
+
+<p>As well as sub-classing, you can pass an object to the BaseViewModel class or one of it's sub-classes to act as the model for that view model.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">meModel</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">'Lee'</span><span class="p">,</span>
+  <span class="nx">age</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+  <span class="nx">address</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">city</span><span class="o">:</span> <span class="s1">'London'</span>
+  <span class="p">},</span>
+  <span class="nx">greeting</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'Hello, I\'m '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">()</span> <span class="o">+</span> <span class="s1">' from '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">city</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">meModel</span><span class="p">);</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">name</span><span class="p">();</span> <span class="c1">// 'Lee'</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">age</span><span class="p">();</span> <span class="c1">// 28</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">city</span><span class="p">();</span> <span class="c1">// 'London'</span>
+<span class="nx">me</span><span class="p">.</span><span class="nx">greeting</span><span class="p">();</span> <span class="c1">// 'Hello, I'm Lee from London'</span>
+</pre></div>
+
+<h3>
+<a name="getting-back-the-model" class="anchor" href="#getting-back-the-model"><span class="octicon octicon-link"></span></a>Getting back the model</h3>
+
+<p>To return the original model there is a toModel method to return the original model as an object, or a toJSON method that returns a JSON representation of the original model. Both methods ignore default properties.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">foo</span><span class="o">:</span> <span class="s1">'foo'</span><span class="p">,</span>
+  <span class="nx">bar</span><span class="o">:</span> <span class="s1">'bar'</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">VM</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BaseViewModel</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">foobar</span><span class="o">:</span> <span class="s1">'foobar'</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">myVM</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VM</span><span class="p">(</span><span class="nx">model</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">myVM</span><span class="p">.</span><span class="nx">toModel</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">objJSON</span> <span class="o">=</span> <span class="nx">myVM</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foobar</span><span class="p">);</span> <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// 'foo'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// { foo: 'foo', bar: 'bar' }</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">objJSON</span><span class="p">);</span> <span class="c1">// '{"foo":"foo","bar":"bar"}'</span>
+</pre></div>
+        </section>
+
+        <footer>
+          Baseviewmodel is maintained by <a href="https://github.com/leesus">leesus</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>

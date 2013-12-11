@@ -1,7 +1,7 @@
 BaseViewModel
 =============
 
-BaseViewModel class for Knockout that enables Backbone like extension for viewmodels, based on ideas in [BaseViewModel](https://github.com/bmac/BaseViewModel) and [ko.ninja](https://github.com/jcreamer898/ko.ninja). Uses [Backbone's](https://github.com/jashkenas/backbone/blob/master/backbone.js) extend function to provide inheritance.
+Backbone like model extension for knockout viewmodels, including automatic observable and computed function creation for model properties. Based on ideas in [bmac's BaseViewModel](https://github.com/bmac/BaseViewModel) and [jcreamer898's ko.ninja](https://github.com/jcreamer898/ko.ninja). Uses [Backbone's](https://github.com/jashkenas/backbone/blob/master/backbone.js) extend function to provide inheritance. [BaseViewModel Project Page](http://labs.lee-ellam.com/BaseViewModel).
 
 ## Getting started
 

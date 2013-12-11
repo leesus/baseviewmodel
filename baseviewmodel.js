@@ -1,28 +1,27 @@
 /*!
- * BaseViewModel v0.1.1
+ * BaseViewModel v0.2.1
  * Copyright 2013 leesus
  */
-;(function(name, context, factory){
+;(function(name, global, factory){
 
   // Set up BaseViewModel for the correct environment - UMD
 
   // CommonJS first
   if (typeof exports === 'object') {
-    module.exports = factory(require);
+    module.exports = factory(
+      require('underscore'),
+      require('knockout')
+    );
   // AMD next
   } else if (typeof define === 'function' && define.amd) {
-    define(factory);
+    define(['underscore', 'knockout'], factory);
   // And global
   } else {
-    context[name] = factory();
+    global[name] = factory(global._, global.ko);
   }
 
-}).call(this, 'BaseViewModel', this, function(require) {
+}).call(this, 'BaseViewModel', this, function(_, ko) {
   'use strict';
-
-  // Require dependencies or assign to globals
-  var _ = (typeof require === 'function') ? require('underscore') : window._;
-  var ko = (typeof require === 'function') ? require('knockout') : window.ko;
 
   // Check dependencies available
   if (typeof _ === 'undefined' || typeof ko === 'undefined') {

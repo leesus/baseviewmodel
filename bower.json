@@ -5,7 +5,7 @@
   "authors": [
     "leesus <lee@lee-ellam.com>"
   ],
-  "description": "BaseViewModel class for Knockout that enables Backbone like extension for viewmodels",
+  "description": "Backbone like model extension for knockout viewmodels, including automatic observable and computed function creation for model properties.",
   "main": "baseviewmodel.js",
   "dependencies": {
     "underscore": "~1.5.2",

@@ -1,8 +1,8 @@
 {
   "name": "baseviewmodel",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Backbone like model extension for knockout viewmodels, including automatic observable and computed function creation for model properties.",
-  "homepage": "http://labs.lee-ellam.com/BaseViewModel",
+  "homepage": "http://labs.lee-ellam.com/baseviewmodel",
   "main": "src/baseviewmodel.js",
   "scripts": {
     "test": "mocha --require should --reporter spec test/specs"
